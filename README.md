@@ -6,11 +6,10 @@
 
 栗子：
 ```
-  UserMapper userMapper     = sqlSession.getMapper(UserMapper.class);
-  Sunday<User> sunday = Sunday.of(User.class);
-  sunday.sundayCriteria()
+  UserMapper    userMapper = sqlSession.getMapper(UserMapper.class);
+  Weekend<User> weekend    = Weekend.of(User.class);
+  weekend.weekendCriteria()
           .andIsNull(User::getId)
           .andBetween(User::getId,0,10)
           .andIn(User::getUserName, Arrays.asList("a","b","c"));
-  List<User> users = userMapper.selectByExample(sunday);
 ```
