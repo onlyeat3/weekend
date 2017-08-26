@@ -1,6 +1,10 @@
 # weekend
+
 基于 https://github.com/abel533/Mapper 做的增强
+
 可以在Example.Criteria的条件方法里传lambada。(再也不用担心改数据库了......)
+
+栗子：
 ```
   UserMapper userMapper     = sqlSession.getMapper(UserMapper.class);
   Sunday<User> sunday = Sunday.of(User.class);
