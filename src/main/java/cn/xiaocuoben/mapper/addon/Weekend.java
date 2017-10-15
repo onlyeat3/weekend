@@ -17,8 +17,20 @@ public class Weekend<T> extends tk.mybatis.mapper.entity.Example {
         super(entityClass, exists, notNull);
     }
 
-    public WeekendCriteria<T,Object> createCriteriaAddOn() {
-        WeekendCriteria<T,Object> weekendCriteria = new WeekendCriteria<>(this.propertyMap,this.exists,this.notNull);
+    public static <A> Weekend<A> of(Class<A> clazz, Boolean exists, boolean notNull) {
+        return new Weekend<A>(clazz, exists, notNull);
+    }
+
+    public static <A> Weekend<A> of(Class<A> clazz, Boolean exists) {
+        return new Weekend<A>(clazz, exists, Boolean.FALSE);
+    }
+
+    public static <A> Weekend<A> of(Class<A> clazz) {
+        return new Weekend<A>(clazz, Boolean.TRUE);
+    }
+
+    public WeekendCriteria<T, Object> createCriteriaAddOn() {
+        WeekendCriteria<T, Object> weekendCriteria = new WeekendCriteria<>(this.propertyMap, this.exists, this.notNull);
         return weekendCriteria;
     }
 
@@ -27,18 +39,8 @@ public class Weekend<T> extends tk.mybatis.mapper.entity.Example {
         return this.createCriteriaAddOn();
     }
 
-    public static <A> Weekend<A> of(Class<A> clazz, Boolean exists, boolean notNull){
-        return new Weekend<A>(clazz,exists,notNull);
-    }
-    public static <A> Weekend<A> of(Class<A> clazz, Boolean exists){
-        return new Weekend<A>(clazz,exists,Boolean.FALSE);
-    }
-    public static <A> Weekend<A> of(Class<A> clazz){
-        return new Weekend<A>(clazz,Boolean.TRUE);
-    }
-
     @SuppressWarnings("all")
-    public WeekendCriteria<T,Object> weekendCriteria(){
+    public WeekendCriteria<T, Object> weekendCriteria() {
         return (WeekendCriteria<T, Object>) this.createCriteria();
     }
 
