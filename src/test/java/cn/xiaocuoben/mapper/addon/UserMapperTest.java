@@ -4,6 +4,7 @@ import cn.xiaocuoben.mapper.addon.entity.User;
 import cn.xiaocuoben.mapper.addon.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,11 +14,20 @@ import java.util.List;
  */
 public class UserMapperTest {
 
-    /**
-     * 执行，然后看日志打出来的SQL
-     */
     @Test
-    public void testSelectIdIsNull(){
+    public void testSelectByExample(){
+        SqlSession    sqlSession = MybatisHelper.getSqlSession();
+        UserMapper    userMapper = sqlSession.getMapper(UserMapper.class);
+        Example example = new Example(User.class);
+        example.createCriteria()
+                .andIsNull("id")
+                .andBetween("id",0,10)
+                .andIn("userName", Arrays.asList("a","b","c"));
+        userMapper.selectByExample(example);
+    }
+
+    @Test
+    public void testSelectByWeekend(){
         SqlSession    sqlSession = MybatisHelper.getSqlSession();
         UserMapper    userMapper = sqlSession.getMapper(UserMapper.class);
         Weekend<User> weekend    = Weekend.of(User.class);
@@ -30,5 +40,7 @@ public class UserMapperTest {
         for (User user : users) {
             System.out.println(user.getUserName());
         }
+
     }
+
 }
